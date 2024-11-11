@@ -1,39 +1,21 @@
 package com.example.demo.domain.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import org.hibernate.annotations.ManyToAny;
-
 import com.example.demo.domain.valueObjects.Email;
 import com.example.demo.domain.valueObjects.Ra;
-
-import jakarta.annotation.Generated;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_aluno")
 public class Aluno {
-    // private String nome;
-    // private String email;
-    // private int idade;
-    // private Date dataInicio;
-    // private ArrayList<Curso> cursos = new ArrayList<>();
-    // public Aluno(String nome, String email, int idade, Date dataInicio) {
-    // this.nome = nome;
-    // this.email = email;
-    // this.idade = idade;
-    // this.dataInicio = dataInicio;
-    // }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,12 +33,8 @@ public class Aluno {
 
     private int idade;
 
-    @ManyToMany
-    @JoinTable(name = "tb_aluno_curso", // Nome da tabela de junção
-            joinColumns = @JoinColumn(name = "aluno_id"), // Chave estrangeira para Aluno
-            inverseJoinColumns = @JoinColumn(name = "curso_id") // Chave estrangeira para Curso
-    )
-    private List<Curso> cursos;
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<AlunoCurso> alunoCursos;
 
     public Long getId() {
         return id;
@@ -104,6 +82,14 @@ public class Aluno {
 
     public void setIdade(int idade) {
         this.idade = idade;
+    }
+
+    public Set<AlunoCurso> getAlunoCursos() {
+        return alunoCursos;
+    }
+
+    public void setAlunoCursos(Set<AlunoCurso> alunoCursos) {
+        this.alunoCursos = alunoCursos;
     }
 
 }

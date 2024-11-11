@@ -1,64 +1,70 @@
 package com.example.demo.domain.entity;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
-import com.example.demo.domain.enumerations.CursoStt;
-
+@Entity
+@Table(name = "tb_curso")
 public class Curso {
-    private CursoStt stt;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String nome;
-    private double valor;
+
     private int duracao;
-    private ArrayList<Integer> notas = new ArrayList<>();
 
-    public Curso(String nome, double valor, int duracao) {
-        this.nome = nome;
-        this.valor = valor;
-        this.duracao = duracao;
-        this.stt = CursoStt.FAZENDO;
+    private double valor;
+
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<AlunoCurso> alunoCursos = new HashSet<>();
+
+    public Long getId() {
+        return id;
     }
 
-    public void setStt(CursoStt stt){
-        this.stt = stt;
+    public void setId(Long id) {
+        this.id = id;
     }
-    public CursoStt getStt(){
-        return this.stt;
-    }
+
     public String getNome() {
         return nome;
     }
-    public double getValor() {
-        return valor;
-    }
-    public int getDuracao() {
-        return duracao;
-    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public void setValor(double valor) {
-        this.valor = valor;
+
+    public int getDuracao() {
+        return duracao;
     }
+
     public void setDuracao(int duracao) {
         this.duracao = duracao;
     }
-    
-    public Curso submitNota(int nota){
-        if(this.notas.size() == 3) throw new IllegalStateException("Erro ao adicionar mais uma nota");
-        this.notas.add(nota);
-        return this;
+
+    public double getValor() {
+        return valor;
     }
 
-    public boolean podeFechar(){
-        return this.notas.size() == 3 ? true : false;
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
-    public double getMedia(){
-        if(!this.podeFechar()) throw new IllegalStateException("nao foi feita todas as provas ainda");
-        int finalSum = 0;
-        for(int nota : this.notas){
-            finalSum += nota;
-        }
-        return finalSum/this.notas.size();
+    public Set<AlunoCurso> getAlunoCursos() {
+        return alunoCursos;
     }
+
+    public void setAlunoCursos(Set<AlunoCurso> alunoCursos) {
+        this.alunoCursos = alunoCursos;
+    }
+
 }
