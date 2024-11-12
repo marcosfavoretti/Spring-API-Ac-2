@@ -10,7 +10,7 @@ public class Email {
 
     protected Email() {}
 
-    public Email(String email,String teste) {
+    public Email(String email) {
         if (email == null || !email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
             throw new IllegalArgumentException("NAO PODE COLOCAR ESSE EMAIL");
         }
