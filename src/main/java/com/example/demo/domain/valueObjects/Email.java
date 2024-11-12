@@ -6,21 +6,19 @@ import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class Email {
-    private String endereco;
+    private String email;
 
-    protected Email() {
-    }
+    protected Email() {}
 
-    public Email(String endereco) {
-        if (endereco == null || !endereco.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+    public Email(String email,String teste) {
+        if (email == null || !email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
             throw new IllegalArgumentException("NAO PODE COLOCAR ESSE EMAIL");
         }
-        this.endereco = endereco;
-
+        this.email = email;
     }
 
     public String getEndereco() {
-        return this.endereco;
+        return this.email;
     }
 
     @Override
@@ -30,11 +28,11 @@ public class Email {
         if (o == null || this.getClass() != o.getClass())
             return false;
         Email email = (Email) o;
-        return Objects.equals(this.endereco, email.endereco);
+        return Objects.equals(this.email, email.email);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(this.endereco);
+        return Objects.hash(this.email);
     }
 }

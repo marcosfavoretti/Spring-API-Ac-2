@@ -12,6 +12,7 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -33,7 +34,13 @@ public class PlataformaController {
     //     alunos.put(1, aluno1);
     //     alunos.put(2, aluno2);
     // }
+    @GetMapping("/")
+    @ResponseBody
+    public String helloWorld() {
+        return "Hello World";
+    }
     
+
     @PostMapping(":aluno/nota")
     public void submeterNotaParaAluno(@RequestBody String entity, @RequestParam int idAluno) {
         //TODO: process POST request
