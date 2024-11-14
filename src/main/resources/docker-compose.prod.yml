@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  database:
+    image: postgres
+    environment:
+      POSTGRES_USER: sa                 # Define o nome do usuário
+      POSTGRES_PASSWORD: postgres       # Define a senha do usuário
+      POSTGRES_DB: papi                 # Define o nome do banco de dados
+    ports:
+      - "5432:5432"                     # Exponha a porta 5432 do PostgreSQL
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+
+  api:
+    image: favorettifacens/ac2:latest
+    environment:
+      DB_HOST: database
+      DB_PORT: 5432                     # Define a porta do banco de dados
+      DB_NAME: papi                     # Nome do banco de dados a ser usado pela API
+      DB_USER: postgres                 # Usuário do banco de dados
+      DB_PASSWORD: postgres             # Senha do banco de dados
+    ports:
+      - "8085:8080"                     # Exponha a API na porta 8085
+    depends_on:
+      - database                        # Define a dependência para o banco de dados
+
+volumes:
+  db-volume:

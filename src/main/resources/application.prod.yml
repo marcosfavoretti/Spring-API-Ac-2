@@ -1,0 +1,22 @@
+# Perfil de staging
+spring:
+  profiles:
+    active: staging
+
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/papi
+    username: sa
+    password: 'postgres'
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update  # ou validate, dependendo das necessidades do seu ambiente de staging
+    show-sql: true     # Mostra as queries SQL no console, útil para testes em staging
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8085  # Porta para staging, você pode ajustar conforme necessário
