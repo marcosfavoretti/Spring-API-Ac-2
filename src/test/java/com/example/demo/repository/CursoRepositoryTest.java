@@ -18,7 +18,7 @@ public class CursoRepositoryTest {
     private ICursoRepository cursoRepository;
 
     @Test
-    void criarCursoNoBanco() {
+    void testCriarCursoNoBanco() {
         Curso curso = new Curso();
         curso.setDuracao(2);
         curso.setAlunoCursos(new HashSet<>());

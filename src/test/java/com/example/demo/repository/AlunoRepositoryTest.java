@@ -23,7 +23,7 @@ public class AlunoRepositoryTest {
     private IAlunosRepository alunoRepo;
 
     @Test
-    void criarAluno() {
+    void testCriarAluno() {
         Aluno aluno = new Aluno();
         aluno.setAlunoCursos(new HashSet<>());
         aluno.setDataInicio((new Date()));

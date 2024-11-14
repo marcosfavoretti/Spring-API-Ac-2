@@ -15,20 +15,20 @@ import org.springframework.test.context.ActiveProfiles;
 import com.example.demo.domain.entity.Aluno;
 import com.example.demo.domain.entity.AlunoCurso;
 import com.example.demo.domain.entity.Curso;
-import com.example.demo.domain.entity.Curso_Nota;
+import com.example.demo.domain.entity.Nota;
 import com.example.demo.domain.valueObjects.Email;
 import com.example.demo.domain.valueObjects.NotaValue;
 import com.example.demo.domain.valueObjects.Ra;
 import com.example.demo.infra.repositories.IAlunoCursoRepository;
 import com.example.demo.infra.repositories.IAlunosRepository;
 import com.example.demo.infra.repositories.ICursoRepository;
-import com.example.demo.infra.repositories.ICurso_NotaRepository;
+import com.example.demo.infra.repositories.ICursoNotaRepository;
 
 @ActiveProfiles("test")
 @DataJpaTest
-public class CursoNotaTest {
+public class CursoNotaRepositoryTest {
     @Autowired
-    private ICurso_NotaRepository notarepo;
+    private ICursoNotaRepository notarepo;
     @Autowired
     private IAlunoCursoRepository alunoCursoRep;
     @Autowired
@@ -37,7 +37,7 @@ public class CursoNotaTest {
     private IAlunosRepository alunoRepo;
 
     @Test
-    void criaNotaTest() {
+    void testCriarNota() {
         Aluno aluno = new Aluno();
         aluno.setAlunoCursos(new HashSet<>());
         aluno.setDataInicio((new Date()));
@@ -62,11 +62,11 @@ public class CursoNotaTest {
         alunocurso.setCurso(curso_salvo);
         AlunoCurso new_alunoCurso = this.alunoCursoRep.save(alunocurso);
         //
-        Curso_Nota cursonota = new Curso_Nota();
+        Nota cursonota = new Nota();
         cursonota.setAlunoCurso(new_alunoCurso);
         NotaValue nota = new NotaValue(8.8);
         cursonota.setValor(nota);
-        Curso_Nota new_cursonota = notarepo.save(cursonota);
+        Nota new_cursonota = notarepo.save(cursonota);
         assertNotNull(new_cursonota);
     }
 

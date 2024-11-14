@@ -3,12 +3,11 @@ package com.example.demo.entity;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
 import com.example.demo.domain.entity.AlunoCurso;
-import com.example.demo.domain.entity.Curso_Nota;
+import com.example.demo.domain.entity.Nota;
 import com.example.demo.domain.valueObjects.NotaValue;
 
 public class CursoNotaTest {
@@ -18,7 +17,7 @@ public class CursoNotaTest {
         NotaValue nota = new NotaValue(7);
         AlunoCurso alunoCurso = new AlunoCurso();
 
-        Curso_Nota cursoNota = new Curso_Nota();
+        Nota cursoNota = new Nota();
         cursoNota.setId(id);
         cursoNota.setValor(nota);
         cursoNota.setAlunoCurso(alunoCurso);

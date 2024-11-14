@@ -30,7 +30,7 @@ public class AlunoCurso {
     private Curso curso;
 
     @OneToMany(mappedBy = "alunoCurso", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Curso_Nota> notas = new ArrayList<Curso_Nota>();
+    private List<Nota> notas = new ArrayList<Nota>();
 
     public Long getId() {
         return id;
@@ -56,11 +56,11 @@ public class AlunoCurso {
         this.curso = curso;
     }
 
-    public List<Curso_Nota> getNotas() {
+    public List<Nota> getNotas() {
         return notas;
     }
 
-    public void setNotas(List<Curso_Nota> notas) {
+    public void setNotas(List<Nota> notas) {
         this.notas = notas;
     }
 

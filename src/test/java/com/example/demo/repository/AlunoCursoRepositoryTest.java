@@ -1,6 +1,5 @@
 package com.example.demo.repository;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ import com.example.demo.infra.repositories.ICursoRepository;
 
 @ActiveProfiles("test")
 @DataJpaTest
-public class AlunoCursoTest {
+public class AlunoCursoRepositoryTest {
     @Autowired
     private IAlunoCursoRepository alunoCursoRep;
     @Autowired
@@ -32,7 +31,7 @@ public class AlunoCursoTest {
     private IAlunosRepository alunoRepo;
 
     @Test
-    void criarAlunoCurso() {
+    void testCriarAlunoCurso() {
         Aluno aluno = new Aluno();
         aluno.setAlunoCursos(new HashSet<>());
         aluno.setDataInicio((new Date()));

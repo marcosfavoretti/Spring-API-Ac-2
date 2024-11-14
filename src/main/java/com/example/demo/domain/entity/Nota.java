@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_nota")
-public class Curso_Nota {
+public class Nota {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
