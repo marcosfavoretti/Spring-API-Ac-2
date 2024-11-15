@@ -13,7 +13,7 @@ services:
       - db-volume:/var/lib/postgresql/data
 
   api:
-    image: favorettifacens/ac2:latest
+    image: patricknsouza/ac2:latest
     environment:
       DB_HOST: database
       DB_PORT: 5432                     # Define a porta do banco de dados
