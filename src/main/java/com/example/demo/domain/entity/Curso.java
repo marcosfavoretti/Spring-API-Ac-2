@@ -63,6 +63,10 @@ public class Curso {
         return alunoCursos;
     }
 
+    public void addAlunoCurso(AlunoCurso alunoCurso){
+        this.alunoCursos.add(alunoCurso);
+    }
+
     public void setAlunoCursos(Set<AlunoCurso> alunoCursos) {
         this.alunoCursos = alunoCursos;
     }

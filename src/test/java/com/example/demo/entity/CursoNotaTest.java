@@ -23,7 +23,7 @@ public class CursoNotaTest {
         cursoNota.setAlunoCurso(alunoCurso);
 
         assertEquals(id, cursoNota.getId());
-        assertEquals(nota, cursoNota.getValor());
+        assertEquals(nota.getValor(), cursoNota.getValor());
         assertEquals(alunoCurso, cursoNota.getAlunoCurso());
     }
 

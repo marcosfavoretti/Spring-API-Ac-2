@@ -31,8 +31,8 @@ public class Nota {
         this.id = id;
     }
 
-    public NotaValue getValor() {
-        return valor;
+    public double getValor() {
+        return valor.getValor();
     }
 
     public void setValor(NotaValue valor) {

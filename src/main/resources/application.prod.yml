@@ -19,4 +19,4 @@ spring:
         format_sql: true
 
 server:
-  port: 8085  # Porta para staging, você pode ajustar conforme necessário
+  port: 8585  # Porta para staging, você pode ajustar conforme necessário

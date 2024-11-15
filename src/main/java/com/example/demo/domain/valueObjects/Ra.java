@@ -8,16 +8,22 @@ import jakarta.persistence.Embeddable;
 public class Ra {
     private String ra;
 
-    protected Ra(){}
+    protected Ra() {
+    }
 
-    public Ra(String ra){
-        if(ra.length() != 6){
+    public Ra(String ra) {
+        if (ra.length() != 6) {
             throw new IllegalArgumentException("RA NAO PODE");
         }
         this.ra = ra;
     }
 
-      @Override
+    public String getRa(){
+        return this.ra;
+    }
+
+
+    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -26,9 +32,9 @@ public class Ra {
         Ra ra = (Ra) o;
         return Objects.equals(this.ra, ra.ra);
     }
-    
+
     @Override
     public int hashCode() {
         return Objects.hash(this.ra);
     }
-}   
+}

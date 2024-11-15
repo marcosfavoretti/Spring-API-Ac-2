@@ -17,7 +17,7 @@ public class Email {
         this.email = email;
     }
 
-    public String getEndereco() {
+    public String getEmail() {
         return this.email;
     }
 
