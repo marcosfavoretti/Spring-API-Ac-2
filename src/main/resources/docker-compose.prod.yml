@@ -21,7 +21,7 @@ services:
       DB_USER: postgres                 # Usuário do banco de dados
       DB_PASSWORD: postgres             # Senha do banco de dados
     ports:
-      - "8085:8080"                     # Exponha a API na porta 8085
+      - "8585:8585"                     # Exponha a API na porta 8085
     depends_on:
       - database                        # Define a dependência para o banco de dados
 

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.entity.Aluno;
 import com.example.demo.domain.entity.Curso;
-import com.example.demo.domain.enumerations.CursoStt;
 
 
 @Service

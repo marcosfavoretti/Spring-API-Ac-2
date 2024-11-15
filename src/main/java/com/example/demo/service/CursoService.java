@@ -1,30 +1,46 @@
 package com.example.demo.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.domain.dto.InputCreateCursoDTO;
+import com.example.demo.domain.dto.OutputGetAllCursoDTO;
 import com.example.demo.domain.entity.Curso;
 import com.example.demo.domain.interfaces.ICursoService;
 import com.example.demo.infra.repositories.ICursoRepository;
 
+@Service
 public class CursoService implements ICursoService{
     @Autowired
     private ICursoRepository cursoRep;
 
     @Override
-    public Curso createCurso(Curso curso) {
-        // TODO Auto-generated method stub
-        return null;
+    public Curso createCurso(InputCreateCursoDTO dto) {
+        Curso curso = new Curso();
+        curso.setNome(dto.nome);
+        curso.setDuracao(dto.duracao);
+        curso.setValor(dto.valor);
+
+        cursoRep.save(curso);
+
+        return curso;
     }
+
     @Override
-    public void finalizaCurso() {
-        // TODO Auto-generated method stub
+    public List<OutputGetAllCursoDTO> getAllCurso() {
+        List<Curso> cursos = cursoRep.findAll();
         
-    }
-    public ICursoRepository getCursoRep() {
-        return cursoRep;
-    }
-    public void setCursoRep(ICursoRepository cursoRep) {
-        this.cursoRep = cursoRep;
+        return cursos.stream()
+              .map(curso -> new OutputGetAllCursoDTO(
+                curso.getId(),
+                curso.getNome(),
+                curso.getDuracao(),
+                curso.getValor()
+                ))
+              .collect(Collectors.toList());
     }
     
 }
