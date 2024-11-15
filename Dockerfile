@@ -1,8 +1,8 @@
 FROM openjdk:17
 
-WORKDIR /ac2_ca
+WORKDIR /ac2
 
-COPY target/*.jar /ac2_ca/
+COPY target/*.jar /ac2/
 
 EXPOSE 8585
 
