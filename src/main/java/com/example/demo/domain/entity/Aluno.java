@@ -1,6 +1,8 @@
 package com.example.demo.domain.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+
 import com.example.demo.domain.valueObjects.Email;
 import com.example.demo.domain.valueObjects.Ra;
 import jakarta.persistence.CascadeType;
@@ -34,7 +36,7 @@ public class Aluno {
     private int idade;
 
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<AlunoCurso> alunoCursos;
+    private Set<AlunoCurso> alunoCursos = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -60,8 +62,8 @@ public class Aluno {
         this.email = email;
     }
 
-    public Ra getRa() {
-        return ra;
+    public String getRa() {
+        return ra.getRa();
     }
 
     public void setRa(Ra ra) {
@@ -78,6 +80,10 @@ public class Aluno {
 
     public int getIdade() {
         return idade;
+    }
+
+    public void addAlunoCurso(AlunoCurso alunoCurso){
+        this.alunoCursos.add(alunoCurso);
     }
 
     public void setIdade(int idade) {

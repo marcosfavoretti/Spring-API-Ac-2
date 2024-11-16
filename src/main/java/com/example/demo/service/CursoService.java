@@ -29,17 +29,17 @@ public class CursoService implements ICursoService{
         return curso;
     }
 
-    @Override
-    public List<OutputGetAllCursoDTO> getAllCurso() {
-        List<Curso> cursos = cursoRep.findAll();
-        return cursos.stream()
-              .map(curso -> new OutputGetAllCursoDTO(
-                curso.getId(),
-                curso.getNome(),
-                curso.getDuracao(),
-                curso.getValor()
-                ))
-              .collect(Collectors.toList());
-    }
+    // @Override
+    // public List<OutputGetAllCursoDTO> getAllCurso() {
+    //     List<Curso> cursos = cursoRep.findAll();
+    //     return cursos.stream()
+    //           .map(curso -> new OutputGetAllCursoDTO(
+    //             curso.getId(),
+    //             curso.getNome(),
+    //             curso.getDuracao(),
+    //             curso.getValor()
+    //             ))
+    //           .collect(Collectors.toList());
+    // }
     
 }

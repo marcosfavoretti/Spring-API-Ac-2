@@ -42,7 +42,7 @@ public class AlunoTest {
         assertEquals(email, aluno.getEmail());
         assertEquals(nome, aluno.getNome());
         assertEquals(idade, aluno.getIdade());
-        assertEquals(ra, aluno.getRa());
+        assertEquals(ra.getRa(), aluno.getRa());
         assertEquals(data, aluno.getDataInicio());
         assertEquals(alunoCurso, aluno.getAlunoCursos());
     }

@@ -19,7 +19,7 @@ import com.example.demo.infra.repositories.IAlunosRepository;
 @ActiveProfiles("test")
 @DataJpaTest
 public class AlunoRepositoryTest {
-     @Autowired
+    @Autowired
     private IAlunosRepository alunoRepo;
 
     @Test
@@ -35,6 +35,5 @@ public class AlunoRepositoryTest {
         assertNotNull(new_Aluno.getId()); // Verifique se o ID foi gerado
         assertEquals("Marcos", new_Aluno.getNome()); // Verifique o nome do curso
     }
-
 
 }

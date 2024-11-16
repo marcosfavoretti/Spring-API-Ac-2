@@ -6,6 +6,7 @@ import com.example.demo.domain.entity.Aluno;
 import com.example.demo.domain.entity.Curso;
 import com.example.demo.domain.entity.Nota;
 import com.example.demo.domain.enumerations.AlunoCursoStatus;
+import com.example.demo.domain.valueObjects.Ra;
 
 public class OutputAlunoCursoDTO {
     public Aluno aluno;
@@ -23,7 +24,7 @@ public class OutputAlunoCursoDTO {
                 this.aluno.setEmail(aluno.getEmail());
                 this.aluno.setNome(aluno.getNome());
                 this.aluno.setIdade(aluno.getIdade());
-                this.aluno.setRa(aluno.getRa());
+                this.aluno.setRa(new Ra(aluno.getRa()));
                 this.aluno.setId(aluno.getId());
                 this.notas= notas;
                 this.status = status;

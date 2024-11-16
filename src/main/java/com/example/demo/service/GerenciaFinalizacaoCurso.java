@@ -10,12 +10,15 @@ import com.example.demo.domain.entity.Curso;
 import com.example.demo.domain.entity.Nota;
 import com.example.demo.domain.enumerations.AlunoCursoStatus;
 import com.example.demo.domain.interfaces.IGerenciaFinalizacaoStarategy;
+import com.example.demo.infra.repositories.IAlunoCursoRepository;
 import com.example.demo.infra.repositories.ICursoRepository;
 
 @Service
 public class GerenciaFinalizacaoCurso implements IGerenciaFinalizacaoStarategy {
     @Autowired
     ICursoRepository cursoRepo;
+    @Autowired
+    IAlunoCursoRepository alunoCursorepo;
 
     public void finaliza(AlunoCurso alunoCurso) {
         List<Nota> notas = alunoCurso.getNotas();
@@ -30,8 +33,13 @@ public class GerenciaFinalizacaoCurso implements IGerenciaFinalizacaoStarategy {
             List<Curso> cursosNovos = cursosNaoAssociados.subList(0, maxCursos);
             cursosNovos.stream().forEach(curso -> {
                 System.out.println("ganhou o curso"+ curso.getId() + curso.getNome());
+                AlunoCurso novoAluno = new AlunoCurso();
+                novoAluno.setAluno(alunoCurso.getAluno());
+                novoAluno.setCurso(curso);
+                novoAluno.setStatus(AlunoCursoStatus.ANDAMENTO);
+                alunoCurso.getAluno().addAlunoCurso(novoAluno);
                 curso.addAlunoCurso(alunoCurso);
-                this.cursoRepo.save(curso);
+                this.alunoCursorepo.save(novoAluno);
             });
         }
         alunoCurso.setStatus(AlunoCursoStatus.CONCLUIDO);

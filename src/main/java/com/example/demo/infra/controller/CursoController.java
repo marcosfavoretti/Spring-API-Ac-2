@@ -29,10 +29,10 @@ public class CursoController {
         this.cursoService = cursoService;
     }
 
-    @GetMapping
-    public List<OutputGetAllCursoDTO> getAllCurso() {
-        return this.cursoService.getAllCurso();
-    }
+    // @GetMapping
+    // public List<OutputGetAllCursoDTO> getAllCurso() {
+    //     return this.cursoService.getAllCurso();
+    // }
 
     @PostMapping
     public Curso postMethodName(@RequestBody InputCreateCursoDTO dto) {

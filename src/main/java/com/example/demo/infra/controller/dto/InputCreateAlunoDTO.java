@@ -14,7 +14,7 @@ public class InputCreateAlunoDTO {
     public int idade;
     public Set<AlunoCurso> alunoCursos;
 
-    InputCreateAlunoDTO(
+    public InputCreateAlunoDTO(
             String nome,
             String email,
             String ra,

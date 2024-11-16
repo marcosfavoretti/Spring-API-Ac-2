@@ -7,6 +7,6 @@ import com.example.demo.infra.controller.dto.InputCreateCursoDTO;
 import com.example.demo.infra.controller.dto.OutputGetAllCursoDTO;
 
 public interface ICursoService {
-    public List<OutputGetAllCursoDTO> getAllCurso();
+    // public List<OutputGetAllCursoDTO> getAllCurso();
     public Curso createCurso(InputCreateCursoDTO curso);
 }
