@@ -35,10 +35,9 @@ public class CursoController {
     // }
 
     @PostMapping
-    public Curso postMethodName(@RequestBody InputCreateCursoDTO dto) {
+    public Curso criarCurso(@RequestBody InputCreateCursoDTO dto) {
         Curso cursoCreated = cursoService.createCurso(dto);
         return cursoCreated;
     }
-    
     
 }

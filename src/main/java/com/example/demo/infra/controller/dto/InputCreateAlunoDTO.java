@@ -9,8 +9,8 @@ import com.example.demo.domain.valueObjects.Ra;
 
 public class InputCreateAlunoDTO {
     public String nome;
-    public Email email;
-    public Ra ra;
+    public String email;
+    public String ra;
     public int idade;
     public Set<AlunoCurso> alunoCursos;
 
@@ -20,8 +20,8 @@ public class InputCreateAlunoDTO {
             String ra,
             int idade) {
         this.nome = nome;
-        this.email = new Email(email);
-        this.ra = new Ra(ra);
+        this.email = email;
+        this.ra = ra;
         this.idade = idade;
         this.alunoCursos = new HashSet<>();
     }

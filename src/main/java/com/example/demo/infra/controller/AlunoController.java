@@ -19,8 +19,8 @@ public class AlunoController {
 
     @PostMapping
     public Aluno criarAluno(@RequestBody InputCreateAlunoDTO dto) {
-        Aluno aluno = this.alunoSerivce.criarAluno(dto);
-        return aluno;
+            Aluno aluno = this.alunoSerivce.criarAluno(dto);
+            return aluno;
     }
 
 }
