@@ -9,6 +9,7 @@ import com.example.demo.domain.entity.AlunoCurso;
 import com.example.demo.domain.entity.Curso;
 import com.example.demo.domain.entity.Nota;
 import com.example.demo.domain.enumerations.AlunoCursoStatus;
+import com.example.demo.domain.interfaces.ICursoNotaService;
 import com.example.demo.domain.interfaces.IGerenciaFinalizacaoStarategy;
 import com.example.demo.infra.repositories.IAlunoCursoRepository;
 import com.example.demo.infra.repositories.ICursoRepository;
@@ -19,9 +20,11 @@ public class GerenciaFinalizacaoCurso implements IGerenciaFinalizacaoStarategy {
     ICursoRepository cursoRepo;
     @Autowired
     IAlunoCursoRepository alunoCursorepo;
+    @Autowired
+    ICursoNotaService cursoNotaService;
 
     public void finaliza(AlunoCurso alunoCurso) {
-        List<Nota> notas = alunoCurso.getNotas();
+        List<Nota> notas = cursoNotaService.listNotasDoAluno(alunoCurso);
         double media = this.mediaDaNota(notas);
         if (media >= 7) {
             List<Curso> cursos = this.cursoRepo.findAll();

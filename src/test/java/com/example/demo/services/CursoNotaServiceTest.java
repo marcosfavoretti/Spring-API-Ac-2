@@ -1,10 +1,14 @@
 package com.example.demo.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,17 +34,16 @@ public class CursoNotaServiceTest {
     @Autowired
     CursoNotaService cursoNotaService;
     @Autowired
-    private ICursoNotaRepository notarepo;
-    @Autowired
     private IAlunoCursoRepository alunoCursoRep;
     @Autowired
     private ICursoRepository cursoRepository;
     @Autowired
     private IAlunosRepository alunoRepo;
     
-
-    @Test 
-    void testAddNota(){
+    public AlunoCurso new_alunoCurso;
+    
+    @BeforeEach
+    void setup(){
         Aluno aluno = new Aluno();
         aluno.setAlunoCursos(new HashSet<>());
         aluno.setDataInicio((new Date()));
@@ -63,12 +66,50 @@ public class CursoNotaServiceTest {
         alunocurso.setAluno(new_Aluno);
         alunocurso.setNotas(new ArrayList<>());
         alunocurso.setCurso(curso_salvo);
-        AlunoCurso new_alunoCurso = this.alunoCursoRep.save(alunocurso);
-
-        InputNotaDTO dto = new InputNotaDTO(5, new_alunoCurso.getId());
-        Nota nota = cursoNotaService.addNota(dto);
-
-        assertEquals(nota.getValor(), dto.valor);
+        new_alunoCurso = this.alunoCursoRep.save(alunocurso);
     }
 
+    @Test
+    void testAddInvalidNota(){
+        assertThrows(IllegalStateException.class,() -> cursoNotaService.addNota(new InputNotaDTO(5, 9999)));
+
+        cursoNotaService.addNota(new InputNotaDTO(5, new_alunoCurso.getId()));
+        cursoNotaService.addNota(new InputNotaDTO(6, new_alunoCurso.getId()));
+        cursoNotaService.addNota(new InputNotaDTO(7, new_alunoCurso.getId()));
+
+        assertThrows(IllegalStateException.class, () -> cursoNotaService.addNota(new InputNotaDTO(7, new_alunoCurso.getId())));
+    }
+
+    @Test 
+    void testAddNota(){
+        List<Nota> notas = cursoNotaService.listNotasDoAluno(new_alunoCurso);
+
+        assertEquals(notas.size(), 0);
+
+        cursoNotaService.addNota(new InputNotaDTO(5, new_alunoCurso.getId()));
+        cursoNotaService.addNota(new InputNotaDTO(6, new_alunoCurso.getId()));
+        cursoNotaService.addNota(new InputNotaDTO(7, new_alunoCurso.getId()));
+        
+        notas = cursoNotaService.listNotasDoAluno(new_alunoCurso);
+
+        assertEquals(notas.size(), 3);
+        assertEquals(notas.get(0).getValor(), 5);
+        assertEquals(notas.get(1).getValor(), 6);
+        assertEquals(notas.get(2).getValor(), 7);
+    }
+
+    @Test
+    void testNotasPendentes(){
+        cursoNotaService.addNota(new InputNotaDTO(5, new_alunoCurso.getId()));
+        cursoNotaService.addNota(new InputNotaDTO(6, new_alunoCurso.getId()));
+        
+        boolean hasNotasPendentes = cursoNotaService.notasPendentes(new_alunoCurso);
+
+        assertTrue(hasNotasPendentes);
+        
+        cursoNotaService.addNota(new InputNotaDTO(6, new_alunoCurso.getId()));
+        hasNotasPendentes = cursoNotaService.notasPendentes(new_alunoCurso);
+
+        assertFalse(hasNotasPendentes);
+    }
 }
