@@ -124,8 +124,7 @@ public class AlunoCursoServiceTest {
         this.notarepo.save(nota1);
         this.notarepo.save(nota2);
         this.notarepo.save(nota3);
-        InputTerminarCursoDTO input = new InputTerminarCursoDTO();
-        input.idAlunoCurso = alunocurso.getId();
+        InputTerminarCursoDTO input = new InputTerminarCursoDTO(alunocurso.getId());
         this.alunoCursoService.terminaCurso(input);
         AlunoCurso aluno = this.alunoCursoService.getAlunoCurso(alunocurso.getId());
         assertEquals(aluno.getStatus(), AlunoCursoStatus.CONCLUIDO);
