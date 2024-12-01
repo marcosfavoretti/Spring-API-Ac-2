@@ -11,7 +11,6 @@ import com.example.demo.domain.entity.Aluno;
 import com.example.demo.domain.entity.Curso;
 import com.example.demo.domain.interfaces.ICursoService;
 import com.example.demo.infra.controller.dto.InputCreateCursoDTO;
-import com.example.demo.infra.controller.dto.OutputGetAllCursoDTO;
 import com.example.demo.infra.repositories.ICursoRepository;
 
 @Service
@@ -28,18 +27,5 @@ public class CursoService implements ICursoService{
         cursoRep.save(curso);
         return curso;
     }
-
-    // @Override
-    // public List<OutputGetAllCursoDTO> getAllCurso() {
-    //     List<Curso> cursos = cursoRep.findAll();
-    //     return cursos.stream()
-    //           .map(curso -> new OutputGetAllCursoDTO(
-    //             curso.getId(),
-    //             curso.getNome(),
-    //             curso.getDuracao(),
-    //             curso.getValor()
-    //             ))
-    //           .collect(Collectors.toList());
-    // }
     
 }

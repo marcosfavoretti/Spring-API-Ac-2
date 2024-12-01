@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.domain.entity.Curso;
 import com.example.demo.domain.interfaces.ICursoService;
 import com.example.demo.infra.controller.dto.InputCreateCursoDTO;
-import com.example.demo.infra.controller.dto.OutputGetAllCursoDTO;
 
 import java.util.List;
 

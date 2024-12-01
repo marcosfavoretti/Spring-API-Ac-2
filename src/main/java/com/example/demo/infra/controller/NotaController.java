@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.domain.entity.Nota;
 import com.example.demo.domain.interfaces.ICursoNotaService;
 import com.example.demo.infra.controller.dto.InputNotaDTO;
 
@@ -16,7 +17,7 @@ public class NotaController {
     ICursoNotaService cursoNota;
 
     @PostMapping
-    void addNota(@RequestBody InputNotaDTO dto){
-        this.cursoNota.addNota(dto);
+    Nota addNota(@RequestBody InputNotaDTO dto){
+        return this.cursoNota.addNota(dto);
     }
 }

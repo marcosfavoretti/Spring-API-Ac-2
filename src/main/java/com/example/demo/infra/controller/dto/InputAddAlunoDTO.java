@@ -4,7 +4,7 @@ public class InputAddAlunoDTO {
     public long idAluno;
     public long idCurso;
 
-    InputAddAlunoDTO(
+    public InputAddAlunoDTO(
             long idAluno,
             long idCurso) {
         this.idAluno = idAluno;

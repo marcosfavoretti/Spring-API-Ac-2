@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.domain.entity.AlunoCurso;
 import com.example.demo.domain.entity.Nota;
 import com.example.demo.domain.interfaces.ICursoNotaService;
+import com.example.demo.domain.valueObjects.NotaValue;
 import com.example.demo.infra.controller.dto.InputNotaDTO;
 import com.example.demo.infra.repositories.IAlunoCursoRepository;
 import com.example.demo.infra.repositories.ICursoNotaRepository;
@@ -34,7 +35,7 @@ public class CursoNotaService implements ICursoNotaService {
         AlunoCurso alunoCurso = alunoCursoOp.get();
         Nota nota = new Nota();
         nota.setAlunoCurso(alunoCurso);
-        nota.setValor(dto.valor);
+        nota.setValor(new NotaValue(dto.valor));
         this.cursoNotaRepo.save(nota);
         return nota;
     }
